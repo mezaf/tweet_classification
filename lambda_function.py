@@ -51,9 +51,3 @@ def lambda_handler(event,context=None):
             ,Key = new_key
         )
     return {"statusCode":200}
-
-# Only for test purpose
-with open('event.json','rb') as json_file:
-    sample = json.load(json_file)
-
-print(lambda_handler(event=sample))
