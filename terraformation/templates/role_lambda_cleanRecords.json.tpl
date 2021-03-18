@@ -4,12 +4,14 @@
     {
       "Sid": "ExampleStmt",
       "Action": [
-        "s3:GetObject"
+        "sts:AssumeRole"
       ],
       "Effect": "Allow",
-      "Resource": [
-        "${s3_bucket}/*"
-      ]
+      "Principal":{
+        "Service": [
+          "s3.amazonaws.com"
+        ]
+      }
     }
   ]
 }

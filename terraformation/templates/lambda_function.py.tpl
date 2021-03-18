@@ -1,7 +1,6 @@
 import json
 import re
 import boto3
-import os
 from operator import itemgetter
 from urllib.parse import unquote_plus
 from fuzzywuzzy import fuzz
@@ -43,7 +42,7 @@ def lambda_handler(event,context=None):
         else:
             max_score_company = 'unknown'
         json_data['company'] = max_score_company
-        sql_conn = pymysql.connect(host=os.environ['host'],user=os.environ['user'],password=os.environ['password'],database='analytics')
+        sql_conn = pymysql.connect(host='${host}',user='${user}',password='${password}',database='analytics')
         sql_query = "INSERT INTO tweets (id,tweetDate,source,user,followers,tweet,retweetedTweet,quotedTweet,company) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
         cursor = sql_conn.cursor()
         cursor.execute(sql_query,
